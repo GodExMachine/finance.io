@@ -333,6 +333,8 @@ const alterarSenha = async () => {
   }
 };
 
+window.alterarSenha = alterarSenha;
+
 // Retorna "YYYY-MM" da fatura em que a compra vai cair,
 // baseado no dia de fechamento do cartão.
 // Ex: fechamento=11, compra=06/jun → fatura jun (fecha dia 11/jun)
