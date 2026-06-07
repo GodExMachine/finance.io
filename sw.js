@@ -1,4 +1,4 @@
-const CACHE_NAME = 'Financcely-v1.03';
+const CACHE_NAME = 'Financcely-v1.04';
 const ASSETS = [
   './app.html',
   './manifest.json'
