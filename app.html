@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Contas em Dia</title>
 <link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/x-icon" href="views/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="views/favicon.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="views/favicon-96x96.png">
+<link rel="apple-touch-icon" href="views/apple-touch-icon.png">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -20,7 +24,7 @@
 <!-- AUTH SCREEN -->
 <div id="loginScreen">
   <div class="login-logo">
-    <div class="logo-icon">💸</div>
+    <div class="logo-icon"><img src="views/favicon-96x96.png" alt="Contas em Dia" style="width:44px;height:44px;object-fit:cover;border-radius:10px"></div>
     <h1>Contas em Dia</h1>
     <p>Suas finanças, simples e claras</p>
   </div>
@@ -80,7 +84,7 @@
 <div id="app">
   <!-- TOP BAR -->
   <div class="topbar">
-    <span class="topbar-logo">💸 Contas em Dia</span>
+    <span class="topbar-logo"><img src="views/favicon-96x96.png" alt="" style="width:22px;height:22px;border-radius:5px;object-fit:cover;vertical-align:middle;margin-right:6px"> Contas em Dia</span>
     <div class="topbar-actions">
       <button class="icon-btn" id="installBtn" onclick="installApp()" title="Instalar App" style="display:none;background:rgba(108,99,255,0.2);color:var(--accent)"><i class="fas fa-download"></i></button>
       <button class="icon-btn" onclick="navigate('dashboard')" title="Atualizar"><i class="fas fa-sync-alt"></i></button>
