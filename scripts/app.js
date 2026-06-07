@@ -277,7 +277,60 @@ const renderPage = (page) => {
   else if(page==='apagar') renderApagar();
   else if(page==='areceber') renderAreceber();
   else if(page==='relatorios') initRelatorios();
-  else if(page==='config') {}
+  else if(page==='config') renderConfig();
+};
+
+// ========== CONFIG ==========
+const renderConfig = () => {
+  const nome  = sessionStorage.getItem('financcely_nome')  || '—';
+  const email = sessionStorage.getItem('financcely_email') || '—';
+  const elNome  = document.getElementById('configNome');
+  const elEmail = document.getElementById('configEmail');
+  if (elNome)  elNome.textContent  = nome;
+  if (elEmail) elEmail.textContent = email;
+  // Limpar campos de senha ao abrir
+  ['cfgSenhaAtual','cfgSenhaNova','cfgSenhaConfirm'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+};
+
+const alterarSenha = async () => {
+  const senhaAtual   = document.getElementById('cfgSenhaAtual').value;
+  const senhaNova    = document.getElementById('cfgSenhaNova').value;
+  const senhaConfirm = document.getElementById('cfgSenhaConfirm').value;
+
+  if (!senhaAtual || !senhaNova || !senhaConfirm) {
+    showToast('Preencha todos os campos', 'var(--red)'); return;
+  }
+  if (senhaNova.length < 6) {
+    showToast('A nova senha deve ter pelo menos 6 caracteres', 'var(--red)'); return;
+  }
+  if (senhaNova !== senhaConfirm) {
+    showToast('As senhas não conferem', 'var(--red)'); return;
+  }
+
+  showToast('Alterando senha...');
+  try {
+    const r = await fetch(WORKER_URL + 'change-password', {
+      method: 'POST',
+      headers: getAuthHeaders(),
+      body: JSON.stringify({ senhaAtual, senhaNova })
+    });
+    const data = await r.json();
+    if (!r.ok) {
+      showToast(data.error || 'Erro ao alterar senha', 'var(--red)'); return;
+    }
+    // Atualizar token se o backend retornar um novo
+    if (data.token) sessionStorage.setItem('financcely_token', data.token);
+    ['cfgSenhaAtual','cfgSenhaNova','cfgSenhaConfirm'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = '';
+    });
+    showToast('Senha alterada com sucesso! 🔐', 'var(--green)');
+  } catch (e) {
+    showToast('Erro de conexão', 'var(--red)');
+  }
 };
 
 // Retorna "YYYY-MM" da fatura em que a compra vai cair,
