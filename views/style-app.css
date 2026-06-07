@@ -53,13 +53,13 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
 .login-hint { font-size: 12px; color: var(--text3); text-align: center; }
 
 /* APP LAYOUT */
-#app { display: none; flex-direction: column; height: 100%; }
-#app.visible { display: flex; }
+#app { display: none; height: 100%; }
+#app.visible { display: block; }
 
 /* TOP BAR */
 .topbar { height: var(--topbar); background: var(--surface); border-bottom: 1px solid var(--border);
   display: flex; align-items: center; justify-content: space-between; padding: 0 16px;
-  position: sticky; top: 0; z-index: 100; flex-shrink: 0; }
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100; }
 .topbar-title { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; }
 .topbar-logo { font-size: 16px; font-weight: 700; color: var(--accent); }
 .topbar-actions { display: flex; gap: 8px; }
@@ -69,14 +69,14 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
 .icon-btn:hover { background: var(--surface3); color: var(--text); }
 
 /* MAIN CONTENT */
-.main-content { flex: 1; overflow-y: auto; overflow-x: hidden; padding-bottom: calc(var(--navbar) + 16px); }
+.main-content { flex: 1; overflow-y: auto; overflow-x: hidden; padding-top: var(--topbar); padding-bottom: calc(var(--navbar) + 16px); }
 .page { display: none; padding: 16px; animation: fadeIn 0.2s ease; }
 .page.active { display: block; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
 /* BOTTOM NAV */
 .navbar { height: var(--navbar); background: var(--surface); border-top: 1px solid var(--border);
-  display: flex; align-items: stretch; position: sticky; bottom: 0; z-index: 100; flex-shrink: 0;
+  display: flex; align-items: stretch; position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
   padding-bottom: env(safe-area-inset-bottom); }
 .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: 3px; cursor: pointer; color: var(--text3); transition: color 0.2s; border: none;
