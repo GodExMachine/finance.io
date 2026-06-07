@@ -1,6 +1,6 @@
 {
-  "name": "Financcely",
-  "short_name": "Financcely",
+  "name": "Contas em Dia",
+  "short_name": "Contas em Dia",
   "description": "Controle financeiro pessoal",
   "start_url": "./app.html",
   "display": "standalone",
@@ -20,6 +20,9 @@
       "type": "image/svg+xml"
     }
   ],
-  "categories": ["finance", "productivity"],
+  "categories": [
+    "finance",
+    "productivity"
+  ],
   "prefer_related_applications": false
 }
