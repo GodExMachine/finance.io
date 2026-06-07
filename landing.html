@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Financcely — Suas finanças, simples e claras</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0a0f;
+  --surface: #13131a;
+  --border: #1e1e2a;
+  --accent: #6c63ff;
+  --accent-light: #8b84ff;
+  --green: #43e97b;
+  --red: #ff6584;
+  --yellow: #f7c844;
+  --text: #f0f0f5;
+  --text2: #9898b0;
+  --text3: #4a4a60;
+  --font: 'DM Sans', sans-serif;
+  --mono: 'DM Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font); line-height: 1.6; overflow-x: hidden; }
+
+/* ---- NAV ---- */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 32px;
+  background: rgba(10,10,15,0.85); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo { font-size: 20px; font-weight: 800; color: var(--text); display: flex; align-items: center; gap: 8px; text-decoration: none; }
+.nav-logo span { color: var(--accent); }
+.nav-cta { background: var(--accent); color: #fff; padding: 10px 22px; border-radius: 100px; font-weight: 600; font-size: 14px; text-decoration: none; transition: opacity 0.2s, transform 0.2s; }
+.nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+
+/* ---- HERO ---- */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 120px 24px 80px; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(108,99,255,0.15) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(108,99,255,0.12); border: 1px solid rgba(108,99,255,0.3);
+  border-radius: 100px; padding: 6px 16px; font-size: 13px; font-weight: 600; color: var(--accent-light);
+  margin-bottom: 28px;
+}
+.hero h1 {
+  font-size: clamp(40px, 7vw, 80px); font-weight: 800; letter-spacing: -2px; line-height: 1.1;
+  margin-bottom: 20px; max-width: 800px;
+}
+.hero h1 .accent { color: var(--accent); }
+.hero p {
+  font-size: clamp(16px, 2vw, 20px); color: var(--text2); max-width: 560px; margin-bottom: 40px;
+}
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+.btn-hero {
+  padding: 15px 32px; border-radius: 100px; font-family: var(--font); font-size: 16px;
+  font-weight: 700; cursor: pointer; text-decoration: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-hero-primary { background: var(--accent); color: #fff; box-shadow: 0 0 40px rgba(108,99,255,0.4); }
+.btn-hero-primary:hover { transform: translateY(-2px); box-shadow: 0 0 60px rgba(108,99,255,0.5); }
+.btn-hero-secondary { background: rgba(255,255,255,0.05); color: var(--text); border: 1px solid var(--border); }
+.btn-hero-secondary:hover { background: rgba(255,255,255,0.08); }
+
+/* ---- MOCKUP ---- */
+.mockup-wrap {
+  margin-top: 64px; position: relative; max-width: 380px; width: 100%;
+}
+.mockup {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 32px;
+  padding: 20px; box-shadow: 0 40px 120px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
+  position: relative; overflow: hidden;
+}
+.mockup::before {
+  content: ''; position: absolute; top: -60px; right: -60px; width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(108,99,255,0.2) 0%, transparent 70%);
+}
+.mockup-topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.mockup-logo { font-size: 14px; font-weight: 700; color: var(--accent); }
+.mockup-balance { background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460); border-radius: 16px; padding: 16px; margin-bottom: 12px; }
+.mockup-label { font-size: 11px; color: var(--text2); margin-bottom: 4px; }
+.mockup-value { font-size: 28px; font-weight: 700; font-family: var(--mono); letter-spacing: -1px; }
+.mockup-sub { display: flex; gap: 16px; margin-top: 10px; }
+.mockup-sub-item { display: flex; align-items: center; gap: 5px; font-size: 11px; }
+.dot { width: 7px; height: 7px; border-radius: 50%; }
+.mockup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+.mockup-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 12px; padding: 12px; }
+.mockup-card-label { font-size: 10px; color: var(--text2); margin-bottom: 3px; }
+.mockup-card-value { font-size: 16px; font-weight: 700; font-family: var(--mono); }
+.mockup-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); }
+.mockup-item:last-child { border-bottom: none; }
+.mockup-icon { width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+.mockup-item-info { flex: 1; }
+.mockup-item-name { font-size: 12px; font-weight: 500; }
+.mockup-item-sub { font-size: 10px; color: var(--text2); }
+.mockup-item-val { font-size: 13px; font-weight: 700; font-family: var(--mono); }
+
+/* Floating badges */
+.float-badge {
+  position: absolute; background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 10px 14px; font-size: 12px; font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4); white-space: nowrap;
+  animation: float 4s ease-in-out infinite;
+}
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+.float-badge-1 { left: -60px; top: 30%; animation-delay: 0s; }
+.float-badge-2 { right: -60px; top: 55%; animation-delay: 1.5s; }
+
+/* ---- FEATURES ---- */
+.section { padding: 96px 24px; max-width: 1100px; margin: 0 auto; }
+.section-label { font-size: 13px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
+.section-title { font-size: clamp(28px, 4vw, 48px); font-weight: 800; letter-spacing: -1px; margin-bottom: 16px; }
+.section-sub { font-size: 18px; color: var(--text2); max-width: 560px; }
+
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 56px; }
+.feature-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 28px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.feature-card:hover { border-color: rgba(108,99,255,0.4); transform: translateY(-4px); }
+.feature-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 16px; }
+.feature-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+.feature-card p { font-size: 14px; color: var(--text2); line-height: 1.6; }
+
+/* ---- HOW IT WORKS ---- */
+.how-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.how-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px; margin-top: 56px; }
+.how-step { text-align: center; }
+.step-num { width: 48px; height: 48px; border-radius: 50%; background: rgba(108,99,255,0.12); border: 1px solid rgba(108,99,255,0.3); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 20px; font-weight: 800; color: var(--accent); }
+.how-step h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+.how-step p { font-size: 14px; color: var(--text2); }
+
+/* ---- CTA FINAL ---- */
+.cta-section {
+  text-align: center; padding: 96px 24px;
+  background: radial-gradient(ellipse at center, rgba(108,99,255,0.1) 0%, transparent 70%);
+}
+.cta-section h2 { font-size: clamp(32px, 5vw, 56px); font-weight: 800; letter-spacing: -1.5px; margin-bottom: 16px; }
+.cta-section p { font-size: 18px; color: var(--text2); margin-bottom: 40px; }
+
+/* ---- FOOTER ---- */
+footer {
+  border-top: 1px solid var(--border); padding: 32px 24px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: gap;
+  max-width: 1100px; margin: 0 auto; font-size: 13px; color: var(--text3);
+}
+
+@media (max-width: 640px) {
+  nav { padding: 14px 20px; }
+  .float-badge-1, .float-badge-2 { display: none; }
+  footer { flex-direction: column; gap: 8px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">💸 Finance<span>cely</span></a>
+  <a class="nav-cta" href="index.html">Começar grátis</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">✨ 100% gratuito, sem anúncios</div>
+  <h1>Controle suas finanças<br>com <span class="accent">clareza total</span></h1>
+  <p>Registre gastos, acompanhe metas, controle cartões e veja relatórios — tudo em um app leve que funciona no seu celular.</p>
+  <div class="hero-actions">
+    <a class="btn-hero btn-hero-primary" href="index.html">🚀 Criar conta grátis</a>
+    <a class="btn-hero btn-hero-secondary" href="#features">Ver funcionalidades</a>
+  </div>
+
+  <div class="mockup-wrap">
+    <div class="float-badge float-badge-1">✅ Sincronizado na nuvem</div>
+    <div class="float-badge float-badge-2">📊 Relatórios automáticos</div>
+    <div class="mockup">
+      <div class="mockup-topbar">
+        <span class="mockup-logo">💸 Financcely</span>
+        <span style="font-size:11px;color:var(--text3)">Jun 2025</span>
+      </div>
+      <div class="mockup-balance">
+        <div class="mockup-label">Saldo total</div>
+        <div class="mockup-value">R$ 4.820,00</div>
+        <div class="mockup-sub">
+          <div class="mockup-sub-item"><div class="dot" style="background:var(--green)"></div><span style="color:var(--green)">R$ 6.500</span> Receitas</div>
+          <div class="mockup-sub-item"><div class="dot" style="background:var(--red)"></div><span style="color:var(--red)">R$ 1.680</span> Gastos</div>
+        </div>
+      </div>
+      <div class="mockup-grid">
+        <div class="mockup-card">
+          <div class="mockup-card-label">Economia</div>
+          <div class="mockup-card-value" style="color:var(--green)">R$ 820</div>
+        </div>
+        <div class="mockup-card">
+          <div class="mockup-card-label">Fatura cartão</div>
+          <div class="mockup-card-value" style="color:var(--yellow)">R$ 340</div>
+        </div>
+      </div>
+      <div style="font-size:12px;font-weight:600;margin-bottom:8px;color:var(--text2)">Últimas transações</div>
+      <div class="mockup-item">
+        <div class="mockup-icon" style="background:rgba(255,101,132,0.12)">🍔</div>
+        <div class="mockup-item-info"><div class="mockup-item-name">iFood</div><div class="mockup-item-sub">Alimentação • Hoje</div></div>
+        <div class="mockup-item-val" style="color:var(--red)">- R$ 47,90</div>
+      </div>
+      <div class="mockup-item">
+        <div class="mockup-icon" style="background:rgba(67,233,123,0.12)">💼</div>
+        <div class="mockup-item-info"><div class="mockup-item-name">Salário</div><div class="mockup-item-sub">Receita • 01/Jun</div></div>
+        <div class="mockup-item-val" style="color:var(--green)">+ R$ 6.500</div>
+      </div>
+      <div class="mockup-item">
+        <div class="mockup-icon" style="background:rgba(56,178,247,0.12)">🚗</div>
+        <div class="mockup-item-info"><div class="mockup-item-name">Uber</div><div class="mockup-item-sub">Transporte • Ontem</div></div>
+        <div class="mockup-item-val" style="color:var(--red)">- R$ 28,00</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="section-label">Funcionalidades</div>
+  <div class="section-title">Tudo que você precisa<br>para organizar sua vida financeira</div>
+  <div class="section-sub">Simples de usar, poderoso o suficiente para te dar controle real.</div>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(108,99,255,0.12)">💳</div>
+      <h3>Contas e cartões</h3>
+      <p>Gerencie múltiplas contas bancárias e cartões de crédito. Veja saldo em qualquer data e controle faturas parceladas.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(67,233,123,0.12)">📊</div>
+      <h3>Gráficos e relatórios</h3>
+      <p>Visualize receitas x despesas mês a mês, gastos por categoria e evolução do seu patrimônio ao longo do tempo.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(247,200,68,0.12)">🎯</div>
+      <h3>Metas financeiras</h3>
+      <p>Defina objetivos como viagem, reserva de emergência ou compra e acompanhe seu progresso com barra visual.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(255,101,132,0.12)">📅</div>
+      <h3>Contas a pagar</h3>
+      <p>Nunca mais esqueça um vencimento. Cadastre contas fixas com alerta de prazo e marque como pago com um toque.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(56,178,247,0.12)">💰</div>
+      <h3>Orçamento mensal</h3>
+      <p>Defina limites de gasto por categoria e veja em tempo real se está dentro do planejado. Alerta quando estiver perto.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(247,151,30,0.12)">☁️</div>
+      <h3>Sincronização na nuvem</h3>
+      <p>Seus dados ficam seguros e sincronizados automaticamente. Acesse de qualquer dispositivo, a qualquer hora.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<div class="how-section">
+  <section class="section">
+    <div class="section-label">Como funciona</div>
+    <div class="section-title">Comece em menos<br>de 2 minutos</div>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="step-num">1</div>
+        <h3>Crie sua conta</h3>
+        <p>Só precisa de email e senha. Nenhum cartão de crédito necessário.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-num">2</div>
+        <h3>Adicione suas contas</h3>
+        <p>Cadastre suas contas bancárias e cartões com saldo inicial.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-num">3</div>
+        <h3>Registre transações</h3>
+        <p>Anote receitas, despesas e transferências rapidamente.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-num">4</div>
+        <h3>Acompanhe tudo</h3>
+        <p>Veja gráficos, relatórios e fique sempre no controle.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <h2>Pronto para ter controle<br>das suas finanças?</h2>
+  <p>Gratuito, sem anúncios, sem complicação.</p>
+  <a class="btn-hero btn-hero-primary" href="index.html" style="display:inline-flex">
+    🚀 Criar minha conta agora
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>💸 <strong>Financcely</strong></span>
+  <span>Feito com ❤️ para quem quer controlar o dinheiro de verdade</span>
+</footer>
+
+</body>
+</html>
