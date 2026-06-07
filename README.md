@@ -1,5 +1,4 @@
-# Financcely
-
+# Finance.io
 Controle financeiro pessoal. PWA leve, sem frameworks, que funciona direto no celular.
 
 [Acessar o app](contasemdia.online) 
