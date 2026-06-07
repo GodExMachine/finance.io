@@ -893,7 +893,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
 let DB = {
   contas: [], transacoes: [], categorias: [], cartoes: [],
   compras: [], metas: [], orcamentos: [], apagar: [], areceber: [],
-  config: { binId: '$2a$10$rgMhcyZagqwVe4ZWTNo0N.3vKhxY/bM1X8P3UbBwX4WXXlPZ5YBS6', binUrl: 'https://api.jsonbin.io/v3/b/6a230261f5f4af5e29beef02' }
+  config: {}
 };
 
 
@@ -939,7 +939,7 @@ const loadDB = () => {
 };
 
 // ========== CLOUD ==========
-const WORKER_URL = 'https://financcely.alexjunkglaus.workers.dev/'; // ← troque pela URL do seu novo Worker
+const WORKER_URL = 'financcely.alexjunkglaus.workers.dev/'; // ← troque pela URL do seu novo Worker
 
 const getAuthHeaders = () => ({
   'Content-Type': 'application/json',
@@ -1163,10 +1163,7 @@ const renderPage = (page) => {
   else if(page==='apagar') renderApagar();
   else if(page==='areceber') renderAreceber();
   else if(page==='relatorios') initRelatorios();
-  else if(page==='config') {
-    document.getElementById('cfgBinId').value = DB.config.binId||'';
-    document.getElementById('cfgBinUrl').value = DB.config.binUrl||'';
-  }
+  else if(page==='config') {}
 };
 
 // Retorna "YYYY-MM" da fatura em que a compra vai cair,
@@ -2139,14 +2136,8 @@ const renderRelatorios = () => {
 };
 
 // ========== CONFIG ==========
-const saveConfig = () => {
-  DB.config.binId = document.getElementById('cfgBinId').value;
-  DB.config.binUrl = document.getElementById('cfgBinUrl').value;
-  saveDB(); showToast('Configuração salva!','var(--green)');
-};
-
 const clearAll = () => {
-  DB = { contas:[], transacoes:[], categorias:[], cartoes:[], compras:[], metas:[], orcamentos:[], apagar:[], areceber:[], config:{binId:'',binUrl:''} };
+  DB = { contas:[], transacoes:[], categorias:[], cartoes:[], compras:[], metas:[], orcamentos:[], apagar:[], areceber:[], config:{} };
   initDefaultCategories();
   saveDB(); renderAll(); showToast('Dados limpos','var(--yellow)');
 };
